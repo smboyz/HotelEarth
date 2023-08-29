@@ -1,0 +1,115 @@
+
+{% load static %}
+<footer>
+
+    <!-- Footer Start-->
+    <div class="footer-area black-bg footer-padding">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                <div class="col-xl-5 col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-footer-caption mb-30">
+                        <!-- logo -->
+                        <!--   <div class="footer-logo">
+                       <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                     </div> -->
+                        <div class="footer-pera">
+                            {% for homes in home %}
+                            <p style="text-align: justify;">
+                                {% autoescape off %}
+                                {{ homes.description }}
+                                {% endautoescape %}
+                            </p>
+                            {% endfor %}
+                            <li style="margin-left: -81px; color: white;">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>Fb-Page: <a target="_blank" href="https://www.facebook.com/EarthLightSauraha">EarthLightSauraha</a>
+                            </li>
+                            <!-- <div class="footer-social footer-social2" style="margin-right: 59px;">
+                         <a href="https://www.facebook.com/EarthLightSauraha"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                     </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5">
+                    <div class="single-footer-caption mb-30">
+                        <div class="footer-tittle" style="text-align: left;">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li>
+                                    <a href="{% url 'aboutus' %}">About Earthlight</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'services' %}">Our Service</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'rooms' %}">Our Best Rooms</a>
+                                </li>
+                                <li>
+                                    <a href="/">Our Photo Gallery</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-3 col-md-4  col-sm-5">
+                    <div class="single-footer-caption mb-30">
+                        <div class="footer-tittle" style="text-align: left;">
+                            <h4>Our Location</h4>
+                            <ul>
+                                {% for globs in glob %}
+                                    <li>
+                                        <i class="fa fa-map-marker"></i> <a href="#">{{ globs.SiteAddress }}</a>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone"></i> <a href="#">{{ globs.SiteContact }}</a>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope"></i> <a href="#">{{ globs.SiteEmail }}</a>
+                                    </li>
+                                
+                                    <li>
+                                        <a target="_blank"
+                                        href="{{ globs.brochure.url }}"
+                                        style="display: inline-block">
+                                            <small class="footer-tittle">
+                                                <i class="fa fa-file"
+                                                style="font-size: 24px;
+                                                    line-height: 32px;
+                                                    width: 32px;
+                                                    height: 32px"></i>
+                                                <span style="vertical-align: middle;">Download Brochure</span>
+                                            </small>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                            </ul>
+                           
+                            <!-- Form -->
+                            <!-- <div class="footer-form">
+                                <div id="mc_embed_signup">
+                                    <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative mail_part">
+                                        <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = ' Email Address '">
+                                        <div class="form-icon">
+                                          <button type="submit" name="submit" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/logo/form-iocn.jpg" alt=""></button>
+                                        </div>
+                                        <div class="mt-10 info"></div>
+                                    </form>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p style="background-color:#dca73a;
+                  text-align:center;
+                  color:black;
+                  margin-top: -31px">Copyright © 2023 Radiant Infotech Nepal, All rights reserved</p>
+    </div>
+    <!-- Footer End-->
+</footer>

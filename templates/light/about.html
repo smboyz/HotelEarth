@@ -1,0 +1,117 @@
+{% extends "light/base.html" %}
+{% load static %}
+{% block content %}
+    {% for abouts in about %}
+        <main>
+            <!-- slider Area Start-->
+            <div class="slider-area">
+                <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
+                     data-background="{{ abouts.slider_image.url }}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-11 offset-xl-1 offset-lg-1 offset-md-1">
+                                <div class="hero-caption">
+                                    <span>{{ abouts.name }}</span>
+                                    <h2>{{ abouts.caption }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- slider Area End-->
+            <!-- Make customer Start-->
+            <section class="make-customer-area customar-padding fix">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-6">
+                            <div class="customer-img mb-120">
+                                <img src="{{ abouts.image1.url }}"
+                                     class="customar-img1 animated-image"
+                                     alt="" />
+                                <img src="{{ abouts.image2.url }}"
+                                     class="customar-img2 animated-image"
+                                     alt="" />
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-5" style="margin-top: -60px">
+                            <div class="customer-caption">
+                                <span>{{ abouts.title }}</span>
+                                <h2 style="font-size: 20px">
+                                   {{ abouts.title1 }}
+                                </h2>
+                                <div class="caption-details">
+                                    <p class="pera-dtails animated-text"
+                                       style="font-size: 14px;
+                                              text-align: justify">
+                                    {% autoescape off %}
+                                     {{ abouts.short_desc1 }}
+                                    {% endautoescape %}
+                                    </p>
+                                </div>
+                                <h2 style="font-size: 20px">{{ abouts.title2 }}</h2>
+                                <div class="caption-details">
+                                    <p class="pera-dtails animated-text"
+                                       style="font-size: 14px;
+                                              text-align: justify">
+                                        {% autoescape off %}
+                                        {{ abouts.short_desc2 }}
+                                        {% endautoescape %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div style="background-image: url('{{ abouts.back_image.url }}');
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        text-align: center;
+                        padding: 20px">
+                <p style="text-align: center;
+                          font-size: 14px;
+                          margin: 0 auto;
+                          max-width: 80%;
+                          background-color: rgba(0, 0, 0, 0.5);
+                          color: white;
+                          padding: 10px">
+                    {% autoescape off %}
+                    {{ abouts.description }}
+                    {% endautoescape %}
+                </p>
+            </div>
+            <!-- Make customer End-->
+            <style>
+                .gallery-img {
+                    max-width: 500px; /* Set the maximum width for the container */
+                    height: 350px; /* Set the desired height for the container */
+                    overflow: hidden; /* Hide any image parts that go beyond the container size */
+                }
+            
+                .gallery-img img {
+                    width: 100%; /* Ensure the image takes up the entire container width */
+                    height: 100%; /* Ensure the image takes up the entire container height */
+                    object-fit: cover; /* Scale the image while maintaining aspect ratio to cover the container */
+                }
+            </style>
+            <div class="gallery-area fix">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="gallery-active owl-carousel">
+                                {% for galls in gall %}
+                                    <div class="gallery-img">
+                                        <img src="{{ galls.image.url }}" />
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Gallery img End-->
+        
+        </main>
+    {% endfor %}
+{% endblock content %}

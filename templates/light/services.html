@@ -1,0 +1,100 @@
+{% extends "light/base.html" %}
+{% load static %}
+{% block content %}
+    {% for services in services %}
+        <main>
+            <!-- slider Area Start-->
+            <div class="slider-area">
+                <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
+                     data-background="{{ services.slider_image.url }}">
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col-md-11 offset-xl-1 offset-lg-1 offset-md-1">
+                                <div class="hero-caption">
+                                    <span>{{ services.name }}</span>
+                                    <h2>{{ services.caption }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- slider Area End-->
+            <!-- Dining Start -->
+            <div class="dining-area dining-padding-top">
+                <!-- Single Left img -->
+                <div class="single-dining-area left-img" style="max-height: 640px;">
+                    <div class="container">
+                        <div class="row justify-content-end">
+                            <div class="col-lg-8 col-md-8">
+                                <div class="dining-caption"
+                                     style="margin-top: -100px;
+                                            margin-bottom: -83px">
+                                    <span style="margin-top: -33px;">OUR RESTURENT</span>
+                                    <h3>{{ services.title1 }}</h3>
+                                    <p style="text-align: justify;margin-bottom: -21px;margin-top: -13px;">  
+                                    {% autoescape off %}
+                                        {{ services.short_desc1 }}
+                                    {% endautoescape %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single Right img -->
+                <div class="single-dining-area right-img" style="max-height: 640px;">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-lg-8 col-md-8">
+                                <div class="dining-caption text-right"
+                                     style="margin-top: -62px;
+                                            margin-bottom: -60px">
+                                    <span style="margin-top: -33px;">Our Pool</span>
+                                    <h3>{{ services.title2 }}</h3>
+                                    <p style="text-align: justify;margin-bottom: -21px;margin-top: -13px;">
+                                        {% autoescape off %}
+                                        {{ services.short_desc2 }}
+                                        {% endautoescape %}
+                                    </p>
+                                    <!-- <a href="#" class="btn border-btn">Learn More  <i class="ti-angle-right"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Dining End -->
+            
+        </main>
+    {% endfor %}
+    <style>
+        .gallery-img {
+            max-width: 500px; /* Set the maximum width for the container */
+            height: 350px; /* Set the desired height for the container */
+            overflow: hidden; /* Hide any image parts that go beyond the container size */
+        }
+    
+        .gallery-img img {
+            width: 100%; /* Ensure the image takes up the entire container width */
+            height: 100%; /* Ensure the image takes up the entire container height */
+            object-fit: cover; /* Scale the image while maintaining aspect ratio to cover the container */
+        }
+    </style>
+    <div class="gallery-area fix">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="gallery-active owl-carousel">
+                        {% for galls in gall %}
+                            <div class="gallery-img">
+                                <img src="{{ galls.image.url }}" />
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Gallery img End-->
+{% endblock content %}

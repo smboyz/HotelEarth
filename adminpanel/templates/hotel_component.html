@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
+         id="navbarBlur"
+         navbar-scroll="true">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <h6 class="font-weight-bolder mb-0">HOTEL OVERVIEW</h6>
+        </nav>
+
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">DETAILS</h6>
+              </div>
+            </div>
+            <div class="container-fluid py-4">
+              <div class="card-body px-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0">
+                    <tr>
+                      <th>S.N</th>
+                      <th>Name</th>
+                      <th>Total</th>
+                      <th>Action</th>
+                    
+                    </tr>
+                    {% for components in component %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ components.name }}</td>
+                        <td>{{ components.total }}</td>
+                        <style>
+                          .button-group {
+                          display: flex;
+                          gap: 5px;
+                          }
+                        </style>
+                      <td>
+                        <div class="button-group">
+                          <a href="{% url 'hotel_component_update' pk=components.pk %}">
+                            <button type="submit" class="btn btn-primary btn-sm">&#9998;</button>
+                          </a>
+                          <form method="POST" action="{% url 'hotel_component_delete' pk=components.pk %}">
+                            {% csrf_token %}
+                                <button type="button" class="btn-danger btn-sm" onclick="myFunction(event)">&#128465;</button>
+                                   <p class="confirmation-msg"></p>
+                          </form>
+                        </div>
+                      </td>
+                    {% endfor %}
+                  </table>
+                </div>
+              </div>
+            </div>
+            <form method="POST"
+            action="{% url 'hotel_component' %}"
+            enctype="multipart/form-data"
+            class="table align-items-center mb-0">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-2 p-2">Name:</label>
+              <input type="text" name="name" value="{{ component.name }}">
+            </div>
+            <div class="form-group">
+              <label class="col-2 p-2">Icon:</label>
+              <i class="{{ component.icon }} counter-icon"></i>
+              <input type="text" name="icon" value="{{ component.icon }}">
+            </div>
+            <div class="form-group">
+              <label class="col-2 p-2">Total:</label>
+              <input type="number" name="total" value="{{ component.total }}">
+            </div>
+          </div>
+      
+        <div class="form-group">
+          <div class="offset-2">
+            <input type="submit" value="Submit" class="btn btn-primary">
+          </div>
+        </div>
+        
+      </form>
+          </div>
+        </div>
+      </div>
+
+ <!-- JavaScript function -->
+<script>
+  function myFunction(event) {
+      var confirmation = confirm("Are you sure you want to delete?");
+      if (confirmation === true) {
+          // Continue with form submission (delete action)
+          event.target.parentNode.submit(); // Manually submit the form
+      } 
+  }
+</script>
+
+{% endblock content %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
+         id="navbarBlur"
+         navbar-scroll="true">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <h6 class="font-weight-bolder mb-0">HOTEL OVERVIEW</h6>
+        </nav>
+
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">DETAILS</h6>
+              </div>
+            </div>
+            <div class="container-fluid py-4">
+              <div class="card-body px-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0">
+                     {% comment %} <tr>
+                      <th>S.N</th>
+                      <th>Name</th>
+                      <th>Check In</th>
+                      <th>Check Out</th>
+                      <th>Action</th>
+                      
+                    
+                    </tr>
+                    {% for checks in chec %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ checks.name }}</td>
+                    {% endfor %}
+                        
+                        <style>
+                          .button-group {
+                          display: flex;
+                          gap: 5px;
+                          }
+                        </style>
+                      <td>
+                          <form method="POST" action="">
+                            {% csrf_token %}
+                            <button type="submit" class="btn-danger btn-sm">&#128465;</button>
+                          </form>
+                        </div>
+                      </td>
+                      <td>
+                        <a href=""><button class='btn btn-primary'> Open</button></a>
+                      </td>  {% endcomment %}
+                <form method="POST"
+                      action="{% url 'check' %}"
+                  
+                      class="table align-items-center mb-0">
+                  {% csrf_token %}
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-2 p-2">Check IN:</label>
+                        <input type="text" name="check_in" value="{{ checks.check_in }}">
+                      </div>
+                      <div class="form-group">
+                        <label class="col-2 p-2">Check OUT:</label>
+                        <input type="text" name="check_out" value="{{ checks.check_out }}">
+                      </div>
+                      <div class="offset-2">
+                        <input type="submit" value="Submit" class="btn btn-primary">
+                      </div>
+                    </div>
+              
+                </form>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+ {% endblock content %}

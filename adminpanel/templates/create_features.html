@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
+         id="navbarBlur"
+         navbar-scroll="true">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <h6 class="font-weight-bolder mb-0">UPDATE FEATURES</h6>
+        </nav>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">DETAILS</h6>
+              </div>
+            </div>
+            <div class="container-fluid py-4">
+              <div class="card-body px-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0">
+                    <form method="POST"
+                          action=""
+                          enctype="multipart/form-data"
+                          class="table align-items-center mb-0">
+                      {% csrf_token %}
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="col-2 p-2">Name:</label>
+                            <input type="text" name="name" value="{{ key.name }}" class="col-8">
+                          </div>
+                          <div class="form-group">
+                            <label class="col-2 p-2">Icon:</label>
+                            <input type="text" name="icon" value="{{ key.icon }}">
+                          </div>
+                          <div class="form-group">
+                            <label class="col-2 p-2">Position:</label>
+                            <input type="number" name="position" value="{{ key.position }}">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="col-2 p-2">Page Type:</label>
+                            <select name="features_type" value="{{ key.features_type }}">
+                              <option value="GROUP"
+                                      {% if key.features_type == "GROUP" %}selected="selected"{% endif %}>
+                               GROUP
+                              </option>
+                              <option value="FEATURE COMPONENTS"
+                                      {% if key.features_type == "FEATURE COMPONENTS" %}selected="selected"{% endif %}>
+                                FEATURE COMPONENTS
+                              </option>
+                              <option value="PROPERTY FEATURE SERVICES"
+                                      {% if key.features_type == "PROPERTY FEATURE SERVICES" %}selected="selected"{% endif %}>
+                                PROPERTY FEATURE SERVICES
+                              </option>
+                              <option value="PROPERTY FACILITIES"
+                                      {% if key.features_type == "PROPERTY FACILITIES" %}selected="selected"{% endif %}>
+                                PROPERTY FACILITIES
+                              </option>
+                              <option value="ROOM FACILITIES"
+                                      {% if key.features_type == "ROOM FACILITIES" %}selected="selected"{% endif %}>
+                                ROOM FACILITIES
+                              </option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                                <label class="col-2 p-2" >Parent:</label>
+                                <input type="number" name="Parent" value="{{ parent_id }}">
+                          </div>
+                          
+                       
+                  
+                        <div class="form-group">
+                          <div class="offset-2">
+                            <input type="submit" value="Submit" class="btn btn-primary">
+                          </div>
+                        
+                        </div>
+                       
+                      </div>
+                     
+                    </form>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+{% endblock content %}

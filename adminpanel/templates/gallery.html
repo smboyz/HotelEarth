@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
+         id="navbarBlur"
+         navbar-scroll="true">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <h6 class="font-weight-bolder mb-0">GALLERY</h6>
+        </nav>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">GALLERY DETAILS</h6>
+              </div>
+            </div>
+            <div class="container-fluid py-4">
+              <div class="card-body px-0 pb-2">
+                <div class="table-responsive p-0">
+                  <table class="table align-items-center mb-0">
+                    <tr>
+                      <th>S.N</th>
+                      <th>Name</th>
+                      <th>Image</th>
+                      <th>Action</th>
+                    </tr>
+                    {% for galls in gall %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ galls.name }}</td>
+                        {% if galls.image %}
+                         <td>
+                        <img src="{{ galls.image.url }}" style="max-width: 15%; height: auto">
+                        {% endif %}
+                        </td>  
+                          
+                        <style>
+                          .button-group {
+                          display: flex;
+                          gap: 5px;
+                          }
+                        </style>
+                        <td>
+                          <div class="button-group">
+                            <a href="{% url 'gallery_update' pk=galls.pk %}">
+                              <button type="submit" class="btn btn-primary btn-sm">&#9998;</button>
+                            </a>
+                            <form method="POST" action="{% url 'gallery_delete' pk=galls.pk %}">
+                              {% csrf_token %}
+                                  <button type="button" class="btn-danger btn-sm" onclick="myFunction(event)">&#128465;</button>
+                                     <p class="confirmation-msg"></p>
+                                </form>
+                          </div>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </table>
+
+                </div>
+              </div>
+            </div>
+            <form method="POST" action="{% url 'gallery_create' %}" enctype="multipart/form-data" >
+              {% csrf_token %}
+              <div class="form-group">
+                <label class="col-2 p-2">Name</label>
+                <input type="text"  name="name" value ="{{ gall.name }}"  required>
+              </div>
+              <div class="form-group">
+                <label class="col-2 p-2">upload</label>
+                <input type="file" name="image" >
+                {% if gall.image %}
+                  <img src="{{ gall.image.url }}" style="max-width: 20%; height:auto">
+                {% endif %}
+                <div class="form-group">
+                  <input type="submit" value="Submit" class="btn btn-primary offset-2 ">
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+ <!-- JavaScript function -->
+<script>
+  function myFunction(event) {
+      var confirmation = confirm("Are you sure you want to delete?");
+      if (confirmation === true) {
+          // Continue with form submission (delete action)
+          event.target.parentNode.submit(); // Manually submit the form
+      } 
+  }
+</script>
+
+
+  {% endblock content %}

@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HotelEarthLight</title>
+        <meta charset="utf-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap"
+              rel="stylesheet">
+        <link rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        {% for globs in glob %}
+        <section class="ftco-sectio bg-blue"
+                 style="background-image: url('{{ globs.back_image.url }}');
+                        background-repeat: no-repeat;
+                        background-size:cover;
+                        {% comment %} background-position:fixed; {% endcomment %}
+                        height:100vh;"> 
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-5">
+                        <h2 class="heading-section"></h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="login-wrap py-5 ">
+                            <div class="img d-flex align-items-center justify-content-center">
+                                
+                            </div>
+                               
+                                <img  src="{{ globs.logo.url }}"
+                                 alt="logo"
+                                 style="width:100%;
+                                        height:auto; 
+                                        border:1px solid;">
+                             
+                                
+                            <h3 class="text-center my-3">HOTEL EARTH LIGHT</h3>
+                            <form method="POST" action="{% url 'admin_login' %}" class="login-form">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="fa fa-user"></span>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="username"
+                                           id="username"
+                                           placeholder="Enter your name.."
+                                           required>
+                                </div>
+                                <div class="form-group">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="fa fa-lock"></span>
+                                    </div>
+                                    <input type="password"
+                                           class="form-control"
+                                           name="password"
+                                           id="password"
+                                           placeholder="Enter your password.."
+                                           required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit"
+                                            class="form-control btn-primary rounded submit px-3">Login</button>
+                                </div>
+                                {% if messages %}
+                                {% for message in messages %}
+                                    <p>{{ message }}</p>
+                                {% endfor %}
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endfor %}
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/popper.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+    </body>
+</html>

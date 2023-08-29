@@ -1,0 +1,142 @@
+{% extends "light/base.html" %}
+{% load static %}
+{% block content %}
+    <!-- slider Area Start-->
+{% for features in features %}
+<main>
+    <div class="slider-area">
+        <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
+             data-background="{{ features.slider_image.url }}">
+            <div class="container">
+                
+                    <div class="row ">
+                        <div class="col-md-11 offset-xl-1 offset-lg-1 offset-md-1">
+                            <div class="hero-caption">
+                                <span>{{ features.name }}</span>
+                                <h2>{{ features.caption }}</h2>
+                            </div>
+                        </div>
+                    </div>
+              
+            </div>
+        </div>
+    </div>
+    <!-- slider Area End-->
+    <!-- Start Sample Area -->
+    <section class="sample-text-area">
+        <div class="container box_1170">
+            <h3 class="text-heading">{{ features.title }}</h3>
+            <p class="sample-text">
+            {{ features.short_desc }}
+            </p>
+        </div>
+    </section>
+    
+    <!-- End Sample Area -->
+    <!-- Start Button -->
+    <section class="button-area">
+        <div class="container box_1170 border-top-generic">
+            {% for compo in f_component %}
+            <div class="fa-icons">
+                
+                <i class="{{ compo.icon }}"></i>
+                <span>{{ compo.name }}</span>
+                
+            </div>
+            {% endfor %}
+         
+        </div>
+    </section>
+    <!-- End Button -->
+    <!-- Start Align Area -->
+    <div class="whole-wrap">
+        <div class="container box_1170">
+            <div class="section-top-border">
+                <!-- <h3 class="mb-30">Left Aligned</h3> -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="{{ features.image1.url }}"
+                             alt=""
+                             class="img-fluid">
+                    </div>
+                    <div class="col-md-9 mt-sm-20">
+                        <p style="text-align:justify;">
+                            {% autoescape off %}
+                            {{ features.description }}
+                            {% endautoescape %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="section-top-border">
+
+                <h3 class="mb-30">KEY FEATURES</h3>
+                
+                <div class="radio-container">
+                    {% for check in chec %}
+                    <div class="radio-item">
+                        <h3>CHECK IN</h3>
+                        <p>{{ check.check_in }} </p>
+                    </div>
+                    <div class="radio-item">
+                        <h3>CHECK OUT</h3>
+                        <p>{{ check.check_out }}</p>
+                    </div>
+                   {% endfor %}
+                    <div class="radio-item">
+                        <h3>PROPERTY FEATURE SERVICES</h3>
+                        {% for  f_services in  f_service %}
+                        <p style="text-align:left; font-size: 14px;">{{ f_services.position }}.{{ f_services.name }}</p>
+                        {% endfor %}
+                       
+                    </div>
+                    <div class="radio-item">
+                        <h3>PROPERTY FACILITIES</h3>
+                        {% for prop in f_properties %}
+                        <p style="text-align:left; font-size: 14px;">{{ prop.position }}.{{ prop.name }}</p>
+                        {% endfor %}
+                        
+                    </div>
+                    <div class="radio-item">
+                            <h3>ROOM FACILITIES</h3>
+                            {% for f_facilities in f_facility %}
+                            <p style="text-align:left; font-size: 14px;">{{ f_facilities.position }}.{{ f_facilities.name }}</p>
+                            {% endfor %}   
+
+                    </div>
+                </div>
+            </div>
+</main> 
+      
+        <style>
+            .gallery-img {
+                max-width: 500px; /* Set the maximum width for the container */
+                height: 350px; /* Set the desired height for the container */
+                overflow: hidden; /* Hide any image parts that go beyond the container size */
+            }
+        
+            .gallery-img img {
+                width: 100%; /* Ensure the image takes up the entire container width */
+                height: 100%; /* Ensure the image takes up the entire container height */
+                object-fit: cover; /* Scale the image while maintaining aspect ratio to cover the container */
+            }
+        </style>
+        <div class="gallery-area fix">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="gallery-active owl-carousel">
+                            {% for galls in gall %}
+                                <div class="gallery-img">
+                                    <img src="{{ galls.image.url }}" />
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery img End-->
+            <!-- End Align Area -->
+        {% endblock content %}

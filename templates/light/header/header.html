@@ -1,0 +1,72 @@
+{% load static %}
+<header>
+    <!-- Header Start -->
+    <div class="header-area header-sticky">
+        <div class="main-header ">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- logo -->
+                    <div class="col-xl-2 col-lg-2">
+                        {% for globs in glob %}
+                            <div class="logo">
+                                <a href="/">
+                                    <img src="{{ globs.logo.url }}" alt="">
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-xl-8 col-lg-8">
+                        <!-- main-menu -->
+                        <div class="main-menu f-right d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li>
+                                        <a href="/">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'aboutus' %}">About</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'services' %}">Service</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'features' %}">Features</a>
+                                    </li>
+                                    <!-- <li><a href="blog.html">Blog</a>
+                                        <ul class="submenu">
+                                            <li><a href="blog.html">Blog</a></li>
+                                            <li><a href="single-blog.html">Blog Details</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <li>
+                                        <a href="#">Rooms & Suites</a>
+                                        <ul class="submenu">
+                                            <li>
+                                                <a href="{% url 'rooms' %}">Rooms</a>
+                                                <!-- <li><a href="elements.html">Element</a></li> -->
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'contact' %}">Contact</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2">
+                            <!-- header-btn -->
+                            <div class="header-btn">
+                                <a href="https://www.tripadvisor.com/Hotel_Review-g1367591-d17452658-Reviews-Hotel_Earth_Light-Sauraha_Chitwan_District_Narayani_Zone_Central_Region.html"
+                                   class="btn btn1 d-none d-lg-block ">Tripadvisor</a>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>

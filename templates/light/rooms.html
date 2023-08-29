@@ -1,0 +1,142 @@
+{% extends "light/base.html" %}
+{% load static %}
+{% block content %}
+
+    <main>
+        <!-- slider Area Start-->
+        <div class="slider-area">
+            {% for rooms in rooms %}
+            <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
+                 data-background="{{rooms.slider_image.url}}">
+                <div class="container">
+                        <div class="row ">
+                            <div class="col-md-11 offset-xl-1 offset-lg-1 offset-md-1">
+                                <div class="hero-caption">
+                                    <span>{{ rooms.name }}</span>
+                                    <h2>{{ rooms.caption }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                  
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- slider Area End-->
+        <!-- Room Start -->
+        <section class="room-area r-padding1">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-8">
+                        <!--font-back-tittle  -->
+                        <div class="font-back-tittle mb-45">
+                            <div class="archivment-front">
+                                <h3>{{rooms.title}}</h3>
+                            </div>
+                            <h3 class="archivment-back">{{rooms.title}}</h3>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="row">
+                    {% for r_details in r_detail %}
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        <!-- Single Room -->
+                        <div class="single-room mb-50">
+                            <div class="room-img">
+                                <a href="rooms.html">
+                                    <img src="{{ r_details.image.url }}"
+                                         alt=""
+                                         style="width: 500px;
+                                                height: 350px">
+                                </a>
+                            </div>
+                            <div class="room-caption">
+                                <h3>
+                                    <a href="rooms.html">{{ r_details.name }}</a>
+                                </h3>
+                                <p class="short-description" style="text-align:left; font-size: 10px; ">
+                                    {% autoescape off %}
+                                    {{ r_details.description }}
+                                    {% endautoescape %}
+                                </p>
+                                <table class="room-details" style="text-align:left; font-size: 13px;">
+                                    <tr style="border-bottom: 1px dotted #ccc;">
+                                        <td>No. of Beds:</td>
+                                        <td>{{r_details.n_bed}}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px dotted #ccc;">
+                                        <td>No. of People:</td>
+                                        <td>{{ r_details.n_people }}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px dotted #ccc;">
+                                        <td>Room Size:</td>
+                                        <td>{{ r_details.room_size }}<span>sqf</span></td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px dotted #ccc;">
+                                        <td>AC/Non-AC:</td>
+                                        <td>{{r_details.Ac_NonAc}}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px dotted #ccc;">
+                                        <td>Price for Single:</td>
+                                        <td><span>$</span>{{ r_details.price_single }}</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px dotted #ccc;">
+                                        <td>Price for Double:</td>
+                                        <td><span>$</span>{{ r_details.price_double }}</td>
+                                    </tr>
+                                    {% if r_details.extra_bed_price != 0 %}
+                                    <tr style="border-bottom: 1px dotted #ccc;">
+                                        <td>Extra Bed :</td>
+                                        <td><span>$</span>{{ r_details.extra_bed_price }}</td>
+                                    </tr>
+                                    {% endif %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                   
+                </div>
+                <!-- <div class="row justify-content-center">
+                <div class="room-btn pt-70">
+                    <a href="#" class="btn view-btn1">View more  <i class="ti-angle-right" style="width: 500px; height: 350px;"></i> </a>
+                </div>
+            </div> -->
+            </div>
+        </section>
+        <!-- Room End -->
+        <style>
+            .gallery-img {
+                max-width: 500px; /* Set the maximum width for the container */
+                height: 350px; /* Set the desired height for the container */
+                overflow: hidden; /* Hide any image parts that go beyond the container size */
+            }
+        
+            .gallery-img img {
+                width: 100%; /* Ensure the image takes up the entire container width */
+                height: 100%; /* Ensure the image takes up the entire container height */
+                object-fit: cover; /* Scale the image while maintaining aspect ratio to cover the container */
+            }
+        </style>
+        <div class="gallery-area fix">
+            <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="gallery-active owl-carousel">
+                            {% for galls in gall %}
+                                <div class="gallery-img">
+                                    <img src="{{ galls.image.url }}" />
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Gallery img End-->
+
+    </main>
+    
+{% endblock content %}
